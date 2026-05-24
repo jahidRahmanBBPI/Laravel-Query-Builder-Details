@@ -11,13 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // php artisan make:migration create_users_table
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            //ostad practice, so we are not using the default users table structure. We will create our own structure for users table.
+            $table->string('email', 50)->unique();
+            $table->string('otp', 10);
+            
+            // $table->string('name');
+            // $table->string('email')->unique();
+            // $table->timestamp('email_verified_at')->nullable();
+            // $table->string('password');
+            // $table->rememberToken();
             $table->timestamps();
         });
 

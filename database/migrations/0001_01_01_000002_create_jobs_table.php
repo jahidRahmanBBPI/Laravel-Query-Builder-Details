@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // php artisan make:migration create_jobs_table
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('queue')->index();
