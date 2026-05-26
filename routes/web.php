@@ -31,9 +31,27 @@ Route::get('/api', function (){
     // $invoice = DB::table('invoices')->where('paid', 1)->count(); // this is example of aggregate function
 
     // Select specific columns from the table
-    $invoice = DB::table('profiles')->select('firstName', 'lastName')->where('id', 2)->get();
-    return response()->json($invoice);
-    // return $invoice;
+    // $invoice = DB::table('profiles')->select('firstName', 'lastName')->where('id', 2)->get();
+    // return response()->json($invoice);
 
+    // Find maximum value of a column
+    $max = DB::table('products')->max('price');
+    // return response()->json($max);
+
+    // Find products with maximum price
+    // $products = DB::table('products')->where('price', DB::table('products')->max('price'))->first();
+    //    $products = DB::table('products')->where('price', $max)->first(); // When you know the max value beforehand, you can directly use it in the where clause to find the products with that maximum price.
+    // return response()->json($products);
+
+    // All 
+    // $products = DB::table('products')->get();
+    // return response()->json($products);
+    
+    // Get the sum of the price column for products with specific conditions.
+    // Spacific condition a price sum kora.
+    // $products = DB::table('products')->where('title', 'New Year Special Shoe')->where('discount', 5)->sum('price');
+    // return $products;
+
+    // get dila data obj asa & first() dila data json format a asa. 58.32 baki
 });
 require __DIR__.'/auth.php';
