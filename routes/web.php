@@ -52,6 +52,73 @@ Route::get('/api', function (){
     // $products = DB::table('products')->where('title', 'New Year Special Shoe')->where('discount', 5)->sum('price');
     // return $products;
 
+    // Dummy Query for testing join query
+    //////////////////////////////////////// This is demo example of join query.
+    // SELECT ID, CLIENT, TOTOAL_PRICE from INVOICES join INVOICE_ITEMS ON invoices.id = invoice_items.invoice_id WHERE invoices.id = 1
+
+    // $invoice = DB::table('invvoices')
+    // ->join('invoice_items', 'invoices.id', '=', 'invoice_items.invoice_id')
+    // ->select('invoice_items.id as item_id', 'invoices.id', 'invoices.client', 'invoices.total_price', 'invoice_items.title', 'invoice_items.total_price as item_total_price')
+    // ->where('invoices.id', 1)
+    // ->get();
+    // return $invoice;
+
+    
+    // $invoice = DB::select('SELECT invoice_items.id as item_id, invoices.id, invoices.client, invoices.total_price, invoice_items.title, invoice_items.total_price as item_total_price FROM invoices JOIN invoice_items ON invoices.id = invoice_items.invoice_id WHERE invoices.id = 1');
+
+    
+    //////////////////////////////////////////////////////////////////////
+    // Products table join with product_carts table to get the product details along with the color and size from the product_carts table.
+    //  $products = DB::table('products')
+    // ->join('product_carts', 'products.id', '=', 'product_carts.product_id')
+    // ->select(
+    //     'products.id',
+    //     'products.discount_price',
+    //     'products.price',
+    //     'product_carts.color',
+    //     'product_carts.size'
+    // )
+    // ->get();
+    // return response()->json($products);
+    // ============================================
+
+    // Products table join with product_carts table and categories table to get the product details along with the color, size and category name from the respective tables.
+    // $products = DB::table('products')
+    // ->join('product_carts', 'products.id', '=', 'product_carts.product_id')
+    // ->join('categories', 'products.category_id', '=', 'categories.id')
+    // ->select(
+    //     'products.id',
+    //     'products.price',
+    //     'products.discount_price',
+    //     'categories.categoryName as category_name'
+    // )
+    // ->get();
+// ============================================
+    // Raw SQL query for join
+    // $products = DB::select('SELECT id, discount_price, price FROM products WHERE id = ?', [1]);
+    // return response()->json($products);
+
+
+    // ============================
+
+    // update query
+    // $updated = DB::table('products')
+    // ->where('id', 1)
+    // ->update(['price' => 100, 'discount_price' => 80]);
+    // return response()->json($updated);
+    // ============================
+
+    // delete query
+    // $deleted = DB::table('products')
+    // ->where('id', 1)
+    // ->delete();
+    // return response()->json($deleted);   
+
+    //===========================
+    $invoice = DB::table('products')->limit(3)->offset(2)->get();
+    return response()->json($invoice);
+
     // get dila data obj asa & first() dila data json format a asa. 58.32 baki
+
 });
 require __DIR__.'/auth.php';
