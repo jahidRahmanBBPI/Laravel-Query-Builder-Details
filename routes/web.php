@@ -120,5 +120,16 @@ Route::get('/api', function (){
 
     // get dila data obj asa & first() dila data json format a asa. 58.32 baki
 
+    // user id 11 maximum total_price
+    $max = DB::table('invoices')
+    ->where('user_id', 11)
+    ->where('paid', 1)
+    ->max('total_price');
+
+    // find invoice with max total_price
+    $invoices = DB::table('invoice')
+    ->where('total_price', $max)
+    ->first();
+    return $invoices;
 });
 require __DIR__.'/auth.php';
