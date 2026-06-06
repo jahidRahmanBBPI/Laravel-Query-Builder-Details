@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\DemoController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    // return ['Laravel' => app()->version()];
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return ['Laravel' => app()->version()];
+//     return view('welcome');
+// });
 
 Route::get('/api', function (){
     // If you want to get all the data from the table, you can use the get() method to retrieve all records as a collection.
@@ -115,10 +116,22 @@ Route::get('/api', function (){
     // return response()->json($deleted);   
 
     //===========================
-    $invoice = DB::table('products')->limit(3)->offset(2)->get();
-    return response()->json($invoice);
-
-    // get dila data obj asa & first() dila data json format a asa. 58.32 baki
+    // $invoice = DB::table('products')->limit(3)->offset(2)->get();
+    // return response()->json($invoice);
+    
+    // get dila data obj asa & first() dila data json format a asa. 1.12 baki
 
 });
+
+    //===========================
+    // Rabbil vai 
+    //===========================
+    Route::get('/demo', [DemoController::class, 'Demo1']);
+    Route::get('/aggregation',[DemoController::class, 'aggregation']);
+    Route::get('/select/clause',[DemoController::class, 'selectClause']);
+    Route::get('/inner/join', [DemoController::class, 'innerJoin']);
+    Route::get('/left/join', [DemoController::class, 'leftJoin']);
+    Route::get('/right/join', [DemoController::class, 'rightJoin']);
+    Route::get('/cross/join', [DemoController::class, 'crossJoin']);
+
 require __DIR__.'/auth.php';
