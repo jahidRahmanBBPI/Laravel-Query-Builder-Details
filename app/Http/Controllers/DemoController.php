@@ -113,4 +113,62 @@ class DemoController extends Controller
                 ->first('email');
     }
 
+    function limit(){
+        return DB::table('products')
+                ->limit(3)
+                ->get();
+    }
+
+    function where(){
+// orWhere, whereNot, whereBetween, whereNotBetween, whereBetweenColumns, whereNotBetweenColumns, 
+// whereIn, whereNotIn, wwhereNull, whereNotNull, whereDate, whereMonth, whereDay, whereYear, 
+// whereTime, whereColumn, whereExists, whereNotExists 
+
+        // return DB::table('products')->where('price', '>', 2000)->get();
+
+        // return DB::table('products')->where('title', 'LIKE', '%new%')->get(); // For search data with keyword.
+
+        // return DB::table('products')->where('title', 'NOT LIKE', '%car%')->get(); // This is oposit of like.
+
+        // return DB::table('products')
+        //         ->where('price', '>', 3000)
+        //         ->orWhere('price', '<', 1000)
+        //         ->get();
+
+        // return DB::table('products')
+        //         ->where('price', '>', 2000)
+        //         ->whereNot('title', 'LIKE', '%car%')
+        //         ->get();
+
+        // return DB::table('products')
+        //         ->whereBetween('price', [1, 1000])
+        //         ->get();
+
+        // return DB::table('products')
+        //         ->whereNotBetween('price', [1000, 3000])
+        //         ->get();
+
+        // SELECT * FROM `products` WHERE `price` IN ('20', '20005') // this is manual sql query
+        // return DB::table('products')
+        //         ->whereIn('price', [500, 1000, 20005])
+        //         ->get();
+
+        // return DB::table('products')
+        //         ->whereNotIn('price', [500, 1000, 20005])
+        //         ->get();
+
+        // return DB::table('products')
+        //         ->whereDate('updated_at', '2026-06-07')
+        //         ->get();
+
+        // return DB::table('products')
+        //         ->whereMonth('updated_at', '06')
+        //         ->get();
+
+        return DB::table('products')
+                ->whereBetween('updated_at', ['2026-06-01', '2026-06-30'])
+                ->get();
+
+    }
+
 }

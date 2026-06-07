@@ -151,4 +151,6 @@ Route::get('/api', function (){
     // Route::get('latest/oldest', [DemoController::class, 'latestOldest']);
     Route::get('orderBy', [DemoController::class, 'orderBy']);
     Route::get('inRandom', [DemoController::class, 'inRandom']);
+    Route::get('limit', [DemoController::class, 'limit']);
+    Route::get('where', [DemoController::class, 'where']);
 require __DIR__.'/auth.php';
