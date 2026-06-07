@@ -144,5 +144,11 @@ Route::get('/api', function (){
     Route::get('/left/join', [DemoController::class, 'leftJoin']);
     Route::get('/right/join', [DemoController::class, 'rightJoin']);
     Route::get('/cross/join', [DemoController::class, 'crossJoin']);
-
+    
+    // Route::get('union', [DemoController::class, 'union']);
+    // Route::get('pagination', [DemoController::class, 'Pagination']);
+    // Route::get('skip/take', [DemoController::class, 'skipTake']);
+    // Route::get('latest/oldest', [DemoController::class, 'latestOldest']);
+    Route::get('orderBy', [DemoController::class, 'orderBy']);
+    Route::get('inRandom', [DemoController::class, 'inRandom']);
 require __DIR__.'/auth.php';
