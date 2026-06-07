@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -165,9 +166,23 @@ class DemoController extends Controller
         //         ->whereMonth('updated_at', '06')
         //         ->get();
 
-        return DB::table('products')
-                ->whereBetween('updated_at', ['2026-06-01', '2026-06-30'])
-                ->get();
+        // return DB::table('products')
+        //         ->whereBetween('updated_at', ['2026-06-01', '2026-06-30'])
+        //         ->get();
+
+        try {
+            return DB::table('categories')
+                    ->where('id', '=', 3)->delete();
+        }
+        catch(Exception $exception){
+            return $exception->getMessage();
+
+            // This is demo.
+            // return response()->json([
+            //     'message' => 'Cannot delete category with id 3 because it is referenced by products.',
+            //     'error' => $exception->getMessage()
+            // ], 400);
+        }
 
     }
 
